@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
 
 import productsApi from "apis/products";
-import { Typography, Spinner } from "neetoui";
+import { Typography } from "neetoui";
 import { append, isNotNil } from "ramda";
+import { useParams } from "react-router-dom";
 
 import Carousel from "./Carousel";
 
+import { Header, PageNotFound, PageLoader } from "../common";
+
 const Product = () => {
+  const [isError, setIsError] = useState(false);
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  const { slug } = useParams();
+
   const fetchProduct = async () => {
     try {
-      const products = await productsApi.show();
-      console.log(products);
-      setProduct(products);
+      const response = await productsApi.show(slug);
+      setProduct(response);
     } catch (error) {
-      console.log("An error occurred:", error);
+      console.log(error);
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }
@@ -26,26 +32,19 @@ const Product = () => {
     fetchProduct();
   }, []);
 
+  if (isError) return <PageNotFound />;
+
   const { name, description, mrp, offerPrice, imageUrls, imageUrl } = product;
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
+    return <PageLoader />;
   }
 
   return (
     <div className="px-6 pb-6">
-      <div>
-        <Typography className="py-2 text-4xl font-semibold" style="h1">
-          {name}
-        </Typography>
-        <hr className="border-2 border-black" />
-      </div>
+      <Header title={name} />
       <div className="mt-16 flex gap-4">
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
