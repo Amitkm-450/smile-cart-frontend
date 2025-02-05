@@ -1,15 +1,24 @@
-import { Button } from "neetoui";
+import { useContext } from "react";
 
-const AddToCart = ({ isInCart, toggleIsInCart }) => {
+import { Button } from "neetoui";
+import { without } from "ramda";
+import CartItemsContext from "src/contexts/CartItemsContext";
+
+const AddToCart = ({ slug }) => {
   const handleClick = e => {
     e.stopPropagation();
     e.preventDefault();
-    toggleIsInCart();
+    setCartItems(prevCartItems =>
+      prevCartItems.includes(slug)
+        ? without([slug], cartItems)
+        : [slug, ...cartItems]
+    );
   };
+  const [cartItems, setCartItems] = useContext(CartItemsContext);
 
   return (
     <Button
-      label={isInCart ? "Remove from cart" : "Add to cart"}
+      label={cartItems.includes(slug) ? "Remove from cart" : "Add to cart"}
       size="large"
       onClick={handleClick}
     />

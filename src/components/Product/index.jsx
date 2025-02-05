@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import productsApi from "apis/products";
+import AddToCart from "components/AddToCart";
 import { Typography } from "neetoui";
 import { append, isNotNil } from "ramda";
 import { useParams } from "react-router-dom";
@@ -55,15 +56,20 @@ const Product = () => {
             )}
           </div>
         </div>
-        <div className="w-3/5 space-y-4">
-          <Typography>{description}</Typography>
-          <Typography>MRP: {mrp}</Typography>
-          <Typography className="font-semibold">
-            Offer price: {offerPrice}
-          </Typography>
-          <Typography className="font-semibold text-green-600">
-            {discountPercentage}% off
-          </Typography>
+        <div className="flex flex-col">
+          <div className="w-3/5 space-y-4">
+            <Typography>{description}</Typography>
+            <Typography>MRP: {mrp}</Typography>
+            <Typography className="font-semibold">
+              Offer price: {offerPrice}
+            </Typography>
+            <Typography className="font-semibold text-green-600">
+              {discountPercentage}% off
+            </Typography>
+          </div>
+          <div className="flex items-center justify-start p-4">
+            <AddToCart {...{ slug }} />
+          </div>
         </div>
       </div>
     </div>
