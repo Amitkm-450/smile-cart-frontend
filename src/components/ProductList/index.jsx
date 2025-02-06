@@ -8,7 +8,7 @@ import { isEmpty } from "ramda";
 
 import ProductListItem from "./ProductListItem";
 
-import Header from "../common/Header";
+import Header from "../commons/Header";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
