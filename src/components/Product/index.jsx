@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import productsApi from "apis/products";
-import AddToCart from "components/AddToCart";
+import AddToCart from "components/common/AddToCart";
 import { Typography } from "neetoui";
 import { append, isNotNil } from "ramda";
 import { useParams } from "react-router-dom";
@@ -35,7 +35,15 @@ const Product = () => {
 
   if (isError) return <PageNotFound />;
 
-  const { name, description, mrp, offerPrice, imageUrls, imageUrl } = product;
+  const {
+    name,
+    description,
+    mrp,
+    offerPrice,
+    imageUrls,
+    imageUrl,
+    availableQuantity,
+  } = product;
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
 
@@ -68,7 +76,7 @@ const Product = () => {
             </Typography>
           </div>
           <div className="flex items-center justify-start p-4">
-            <AddToCart {...{ slug }} />
+            <AddToCart {...{ availableQuantity, slug }} />
           </div>
         </div>
       </div>
