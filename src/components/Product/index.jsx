@@ -13,27 +13,9 @@ import Carousel from "./Carousel";
 import { Header, PageNotFound, PageLoader } from "../commons";
 
 const Product = () => {
-  // const [isError, setIsError] = useState(false);
-  // const [product, setProduct] = useState({});
-  // const [isLoading, setIsLoading] = useState(true);
   const { slug } = useParams();
   const { data: product = {}, isLoading, isError } = useShowProduct(slug);
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
-  // const fetchProduct = async () => {
-  //   try {
-  //     const response = await productsApi.show(slug);
-  //     setProduct(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setIsError(true);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchProduct();
-  // }, []);
 
   if (isError) return <PageNotFound />;
 
