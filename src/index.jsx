@@ -4,9 +4,11 @@ import React from "react";
 import "./common/i18n";
 import initializeAxios from "apis/axios";
 import ReactDOM from "react-dom/client";
+//i18n should load before App initialization. Hence, disabling import/order rule.
+import { QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-//i18n should load before App initialization. Hence, disabling import/order rule.
+import queryClient from "utils/queryClient";
 
 import App from "./App";
 import "./index.css";
@@ -16,10 +18,12 @@ initializeAxios();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ToastContainer />
-      <App />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ToastContainer />
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
