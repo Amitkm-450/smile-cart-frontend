@@ -13,6 +13,8 @@ export const CHECKOUT_FORM_INITIAL_VALUES = {
   zipCode: "",
 };
 
+export const CHECKOUT_LOCAL_STORAGE_KEY = "checkoutUserDetails";
+
 export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
   email: yup
     .string()
