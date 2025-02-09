@@ -30,8 +30,4 @@ persistQueryClient({
   },
 });
 
-persistQueryClient({
-  queryClient,
-});
-
 export default queryClient;

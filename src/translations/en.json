@@ -14,6 +14,7 @@
     "title": "product"
   },
   "checkout": "Checkout",
+  "confirmOrder": "Confirm order",
   "contact": "Contact",
   "email": "Email",
   "enterYourEmail": "Enter your email",
@@ -34,6 +35,13 @@
   "selectState": "Select the state",
   "zipCode": "Zip code",
   "enterZipCode": "Enter zip code",
+  "error": {
+    "genericError": "An error occurred: {{error}}",
+    "quantityLimit_one": "Only 1 unit is available",
+    "quantityLimit_other": "Only {{count}} units are available",
+    "noInternetConnection": "No Internet Connection",
+    "networkError": "Network Error"
+  },
   "validations": {
     "emailRequired": "Email address is required",
     "firstNameRequired": "First name is required",
@@ -44,5 +52,8 @@
     "stateRequired": "State is required",
     "zipCodeRequired": "Zip code is required",
     "emailInvalid": "Email address is invalid"
+  },
+  "order": {
+    "successfullyPlaced": "Order has been successfully placed"
   }
 }

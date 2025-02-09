@@ -19,6 +19,7 @@ const useCartItemsStore = create(
         set(evolve({ cartItems: dissoc(slug) }));
         console.log(1);
       },
+      clearCart: () => set({ cartItems: {} }),
     }),
     { name: "cart-items-store" }
   )
