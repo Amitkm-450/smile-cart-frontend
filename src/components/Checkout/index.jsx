@@ -85,7 +85,7 @@ const Checkout = () => {
       formProps={{ noValidate: true }}
       formikProps={{
         initialValues: checkoutFormData || CHECKOUT_FORM_INITIAL_VALUES,
-        validatiovalidationSchema: CHECKOUT_FORM_VALIDATION_SCHEMA,
+        validationSchema: CHECKOUT_FORM_VALIDATION_SCHEMA,
         onSubmit: handleSubmit,
       }}
     >
